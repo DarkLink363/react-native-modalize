@@ -200,7 +200,7 @@ export interface IProps<ListItem = any> {
      * Define if disable the pan gesture of child component.
      * @default false
      */
-    panGestureChildrenEnabled?: boolean;
+    disablePanGestureForChildren?: boolean;
     /**
      * A header component outside of the ScrollView, on top of the modal.
      */

@@ -98,7 +98,7 @@ const ModalizeBase = (
       tapGestureEnabled = true,
       closeOnOverlayTap = true,
       closeSnapPointStraightEnabled = true,
-      panGestureChildrenEnabled = false,
+      disablePanGestureForChildren = false,
 
       // Animations
       openAnimationConfig = {
@@ -749,7 +749,7 @@ const ModalizeBase = (
       bounces,
       scrollEventThrottle,
     };
-    const options = panGestureEnabled ? opts : (panGestureChildrenEnabled ? optsWithOutPanGesture : opts);
+    const options = !disablePanGestureForChildren ? opts : optsWithOutPanGesture;
     if (flatListProps) {
       return <Animated.FlatList {...flatListProps} {...options} />;
     }
@@ -774,7 +774,7 @@ const ModalizeBase = (
     return (
         <PanGestureHandler
             ref={panGestureChildrenRef}
-            enabled={panGestureEnabled && !panGestureChildrenEnabled}
+            enabled={panGestureEnabled && !disablePanGestureForChildren}
             simultaneousHandlers={[nativeViewChildrenRef, tapGestureModalizeRef]}
             shouldCancelWhenOutside={false}
             onGestureEvent={handleGestureEvent}
@@ -788,7 +788,7 @@ const ModalizeBase = (
                 ref={nativeViewChildrenRef}
                 waitFor={tapGestureModalizeRef}
                 simultaneousHandlers={panGestureChildrenRef}
-                enabled={panGestureEnabled && !panGestureChildrenEnabled}
+                enabled={panGestureEnabled && !disablePanGestureForChildren}
             >
               {renderContent()}
             </NativeViewGestureHandler>
@@ -929,7 +929,7 @@ const ModalizeBase = (
             ref={tapGestureModalizeRef}
             maxDurationMs={tapGestureEnabled ? 100000 : 50}
             maxDeltaY={lastSnap}
-            enabled={panGestureEnabled && !panGestureChildrenEnabled}
+            enabled={panGestureEnabled && !disablePanGestureForChildren}
         >
           <View style={s.modalize__wrapper} pointerEvents="box-none">
             {showContent && (
