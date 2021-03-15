@@ -863,6 +863,14 @@ const ModalizeBase = (
     close(dest?: TClose): void {
       handleClose(dest);
     },
+
+    enableScroll(): void {
+      setDisableScroll(false);
+    },
+
+    disableScroll(): void {
+      setDisableScroll(false);
+    }
   }));
 
   React.useEffect(() => {
