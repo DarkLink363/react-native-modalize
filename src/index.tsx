@@ -263,8 +263,6 @@ const ModalizeBase = (
       newPosition = 'top';
     }
 
-    console.log(!!spring, translateY, spring ? getSpringConfig(spring) : 'no spring');
-
     Animated.parallel([
       Animated.timing(overlay, {
         toValue: alwaysOpenValue && dest === 'default' ? 0 : 1,
@@ -294,7 +292,7 @@ const ModalizeBase = (
             easing: timing.easing,
             useNativeDriver: USE_NATIVE_DRIVER,
           }),
-    ]).start(() => {
+    ], {stopTogether: false}).start(() => {
       if (onOpened) {
         onOpened();
       }
