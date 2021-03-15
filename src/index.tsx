@@ -795,7 +795,7 @@ const ModalizeBase = (
                 ref={nativeViewChildrenRef}
                 waitFor={tapGestureModalizeRef}
                 simultaneousHandlers={panGestureChildrenRef}
-                enabled={panGestureEnabled && !disablePanGestureForChildren}
+                enabled={panGestureEnabled}
             >
               {renderContent()}
             </NativeViewGestureHandler>
