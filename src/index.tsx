@@ -244,6 +244,8 @@ const ModalizeBase = (
       toValue = (modalHeightValue || 0) - snapPoint;
     }
 
+    console.log(toValue);
+
     if (panGestureAnimatedValue && (alwaysOpenValue || snapPoint)) {
       toPanValue = 0;
     } else if (
