@@ -747,10 +747,10 @@ const ModalizeBase = (
     const optsWithOutPanGesture = {
       ref: composeRefs(contentViewRef, contentRef) as React.RefObject<any>,
       bounces,
-      onScrollBeginDrag: Animated.event([{ nativeEvent: { contentOffset: { y: beginScrollY } } }], {
-        useNativeDriver: USE_NATIVE_DRIVER,
-        listener: onScrollBeginDrag,
-      }),
+      // onScrollBeginDrag: Animated.event([{ nativeEvent: { contentOffset: { y: beginScrollY } } }], {
+      //   useNativeDriver: USE_NATIVE_DRIVER,
+      //   listener: onScrollBeginDrag,
+      // }),
       scrollEventThrottle,
       onLayout: handleContentLayout,
       scrollEnabled,
@@ -976,12 +976,12 @@ const ModalizeBase = (
           style={[s.modalize, rootStyle]}
           pointerEvents={alwaysOpen || !withOverlay ? 'box-none' : 'auto'}
       >
-        {/*<TapGestureHandler*/}
-        {/*    ref={tapGestureModalizeRef}*/}
-        {/*    maxDurationMs={tapGestureEnabled ? 100000 : 50}*/}
-        {/*    maxDeltaY={lastSnap}*/}
-        {/*    enabled={panGestureEnabled && !disablePanGestureForChildren}*/}
-        {/*>*/}
+        <TapGestureHandler
+            ref={tapGestureModalizeRef}
+            maxDurationMs={tapGestureEnabled ? 100000 : 50}
+            maxDeltaY={lastSnap}
+            enabled={panGestureEnabled && !disablePanGestureForChildren}
+        >
           <View style={s.modalize__wrapper} pointerEvents="box-none">
             {showContent && (
                 <AnimatedKeyboardAvoidingView {...keyboardAvoidingViewProps}>
@@ -994,7 +994,7 @@ const ModalizeBase = (
 
             {withOverlay && renderOverlay()}
           </View>
-        {/*</TapGestureHandler>*/}
+        </TapGestureHandler>
 
         {renderComponent(FloatingComponent, 'floating')}
       </View>
