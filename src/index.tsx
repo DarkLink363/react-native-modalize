@@ -816,6 +816,34 @@ const ModalizeBase = (
     const pointerEvents =
         alwaysOpen && (modalPosition === 'initial' || !modalPosition) ? 'box-none' : 'auto';
 
+    if (isIos && disablePanGestureForChildren) {
+      return (
+        <Animated.View style={s.overlay} pointerEvents={pointerEvents}>
+          {showContent && (
+              <TapGestureHandler
+                  ref={tapGestureOverlayRef}
+                  enabled={closeOnOverlayTap !== undefined ? closeOnOverlayTap : panGestureEnabled}
+                  onHandlerStateChange={handleOverlay}
+              >
+                <Animated.View
+                    style={[
+                      s.overlay__background,
+                      overlayStyle,
+                      {
+                        opacity: overlay.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [0, 1],
+                        }),
+                      },
+                    ]}
+                    pointerEvents={pointerEvents}
+                />
+              </TapGestureHandler>
+          )}
+        </Animated.View>
+      );
+    }
+
     return (
         <PanGestureHandler
             enabled={panGestureEnabled}
