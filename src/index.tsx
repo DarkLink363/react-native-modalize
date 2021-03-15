@@ -232,8 +232,6 @@ const ModalizeBase = (
         handleBackPress,
     );
 
-    translateY.setValue(0);
-
     let toValue = 0;
     let toPanValue = 0;
     let newPosition: TPosition;
@@ -978,12 +976,12 @@ const ModalizeBase = (
           style={[s.modalize, rootStyle]}
           pointerEvents={alwaysOpen || !withOverlay ? 'box-none' : 'auto'}
       >
-        <TapGestureHandler
-            ref={tapGestureModalizeRef}
-            maxDurationMs={tapGestureEnabled ? 100000 : 50}
-            maxDeltaY={lastSnap}
-            enabled={panGestureEnabled && !disablePanGestureForChildren}
-        >
+        {/*<TapGestureHandler*/}
+        {/*    ref={tapGestureModalizeRef}*/}
+        {/*    maxDurationMs={tapGestureEnabled ? 100000 : 50}*/}
+        {/*    maxDeltaY={lastSnap}*/}
+        {/*    enabled={panGestureEnabled && !disablePanGestureForChildren}*/}
+        {/*>*/}
           <View style={s.modalize__wrapper} pointerEvents="box-none">
             {showContent && (
                 <AnimatedKeyboardAvoidingView {...keyboardAvoidingViewProps}>
@@ -996,7 +994,7 @@ const ModalizeBase = (
 
             {withOverlay && renderOverlay()}
           </View>
-        </TapGestureHandler>
+        {/*</TapGestureHandler>*/}
 
         {renderComponent(FloatingComponent, 'floating')}
       </View>
