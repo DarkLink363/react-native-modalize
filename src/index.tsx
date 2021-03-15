@@ -232,7 +232,7 @@ const ModalizeBase = (
         handleBackPress,
     );
 
-    translateY.setValue(screenHeight);
+    translateY.setValue(0);
 
     let toValue = 0;
     let toPanValue = 0;
