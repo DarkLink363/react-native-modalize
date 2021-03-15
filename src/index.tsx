@@ -232,8 +232,7 @@ const ModalizeBase = (
         handleBackPress,
     );
 
-    const startValue = alwaysOpen ? (modalHeightValue || 0) - alwaysOpen : screenHeight;
-    translateY.setValue(startValue);
+    translateY.setValue(screenHeight);
 
     let toValue = 0;
     let toPanValue = 0;
