@@ -232,6 +232,9 @@ const ModalizeBase = (
         handleBackPress,
     );
 
+    const startValue = alwaysOpen ? (modalHeightValue || 0) - alwaysOpen : screenHeight;
+    translateY.setValue(startValue);
+
     let toValue = 0;
     let toPanValue = 0;
     let newPosition: TPosition;
@@ -292,7 +295,7 @@ const ModalizeBase = (
             easing: timing.easing,
             useNativeDriver: USE_NATIVE_DRIVER,
           }),
-    ], {stopTogether: false}).start(() => {
+    ]).start(() => {
       if (onOpened) {
         onOpened();
       }
