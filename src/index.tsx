@@ -747,6 +747,10 @@ const ModalizeBase = (
     const optsWithOutPanGesture = {
       ref: composeRefs(contentViewRef, contentRef) as React.RefObject<any>,
       bounces,
+      onScrollBeginDrag: Animated.event([{ nativeEvent: { contentOffset: { y: beginScrollY } } }], {
+        useNativeDriver: USE_NATIVE_DRIVER,
+        listener: onScrollBeginDrag,
+      }),
       scrollEventThrottle,
       onLayout: handleContentLayout,
       scrollEnabled,
