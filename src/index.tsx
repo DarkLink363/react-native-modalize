@@ -778,6 +778,14 @@ const ModalizeBase = (
   const renderChildren = (): JSX.Element => {
     const style = adjustToContentHeight ? s.content__adjustHeight : s.content__container;
 
+    if (isIos && disablePanGestureForChildren) {
+      return (
+        <Animated.View style={[style, childrenStyle]}>
+          {renderContent()}
+        </Animated.View>
+      );
+    }
+
     return (
         <PanGestureHandler
             ref={panGestureChildrenRef}
