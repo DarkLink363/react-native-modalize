@@ -748,8 +748,11 @@ const ModalizeBase = (
       ref: composeRefs(contentViewRef, contentRef) as React.RefObject<any>,
       bounces,
       scrollEventThrottle,
+      onLayout: handleContentLayout,
+      scrollEnabled,
     };
     const options = !disablePanGestureForChildren ? opts : optsWithOutPanGesture;
+    // const options = opts;
     if (flatListProps) {
       return <Animated.FlatList {...flatListProps} {...options} />;
     }
