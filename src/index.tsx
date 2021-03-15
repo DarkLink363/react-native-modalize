@@ -795,7 +795,7 @@ const ModalizeBase = (
                 ref={nativeViewChildrenRef}
                 waitFor={tapGestureModalizeRef}
                 simultaneousHandlers={panGestureChildrenRef}
-                enabled={panGestureEnabled}
+                enabled={panGestureEnabled && !disablePanGestureForChildren}
             >
               {renderContent()}
             </NativeViewGestureHandler>
@@ -936,7 +936,7 @@ const ModalizeBase = (
             ref={tapGestureModalizeRef}
             maxDurationMs={tapGestureEnabled ? 100000 : 50}
             maxDeltaY={lastSnap}
-            enabled={panGestureEnabled && !disablePanGestureForChildren}
+            enabled={panGestureEnabled}
         >
           <View style={s.modalize__wrapper} pointerEvents="box-none">
             {showContent && (
